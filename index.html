@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoio TEA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+
+    <header>
+        <h1>🧩 Apoio TEA</h1>
+        <span>Suporte ao Transtorno do Espectro Autista</span>
+    </header>
+
+    <nav>
+        <button class="ativo" onclick="irPara('inicio', this)">🏠 Início</button>
+        <button onclick="irPara('chat', this)">💬 Suporte</button>
+        <button onclick="irPara('locais', this)">📍 Locais de Apoio</button>
+        <button onclick="irPara('aposentadoria', this)">📋 Aposentadoria</button>
+        <button onclick="irPara('direitos', this)">⚖️ Direitos</button>
+    </nav>
+
+    <!-- INÍCIO -->
+    <section id="inicio" class="secao ativa">
+        <h2 class="secao-titulo">Bem-vindo ao Apoio TEA</h2>
+        <p class="secao-sub">Uma plataforma dedicada a pessoas autistas, familiares e cuidadores. Aqui você encontra
+            suporte, informações e orientação.</p>
+
+        <div class="grid-2">
+            <div class="card" style="border-left: 4px solid var(--azul); cursor:pointer"
+                onclick="irPara('chat', document.querySelectorAll('nav button')[1])">
+                <h3>💬 Chat de Apoio</h3>
+                <p>Converse com nosso assistente sobre dúvidas, rotinas, comportamentos e bem-estar. Disponível 24h.</p>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--verde); cursor:pointer"
+                onclick="irPara('locais', document.querySelectorAll('nav button')[2])">
+                <h3>📍 Locais de Apoio</h3>
+                <p>Encontre clínicas, CAPS, centros especializados e associações perto de você.</p>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--laranja); cursor:pointer"
+                onclick="irPara('aposentadoria', document.querySelectorAll('nav button')[3])">
+                <h3>📋 Aposentadoria por Invalidez</h3>
+                <p>Guia passo a passo para dar entrada no benefício do INSS para pessoas com TEA.</p>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--roxo); cursor:pointer"
+                onclick="irPara('direitos', document.querySelectorAll('nav button')[4])">
+                <h3>⚖️ Direitos Garantidos</h3>
+                <p>Conheça a Lei Berenice Piana, o Estatuto da Pessoa com Deficiência e outros direitos.</p>
+            </div>
+        </div>
+
+        <div class="alerta info">
+            <span>ℹ️</span>
+            <div><strong>Lei 12.764/2012 (Lei Berenice Piana):</strong> O autismo é considerado deficiência para todos
+                os efeitos legais. Pessoas com TEA têm direito a atendimento pelo SUS, educação inclusiva, e benefícios
+                sociais.</div>
+        </div>
+
+        <div class="alerta aviso">
+            <span>📞</span>
+            <div><strong>Precisa de ajuda urgente?</strong> CVV (Centro de Valorização da Vida): <strong>188</strong> —
+                gratuito, 24 horas, sigilo total.</div>
+        </div>
+    </section>
+
+    <!-- CHAT -->
+    <section id="chat" class="secao">
+        <h2 class="secao-titulo">💬 Chat de Suporte</h2>
+        <p class="secao-sub">Fale sobre dúvidas relacionadas ao autismo. Nosso assistente está aqui para ajudar.</p>
+
+        <p style="font-size:13px; color:var(--cinza); margin-bottom:10px;">Sugestões rápidas:</p>
+        <div class="sugestoes">
+            <button onclick="enviarSugestao('Como lidar com crises sensoriais?')">🔊 Crises sensoriais</button>
+            <button onclick="enviarSugestao('Como montar uma rotina para autista?')">📅 Rotina</button>
+            <button onclick="enviarSugestao('Quais terapias são recomendadas para o autismo?')">🏥 Terapias</button>
+            <button onclick="enviarSugestao('Como comunicar com uma criança não verbal?')">🗣️ Comunicação</button>
+            <button onclick="enviarSugestao('Como obter a carteirinha do autista?')">📄 Carteirinha</button>
+        </div>
+
+        <div class="chat-box">
+            <div class="chat-header">
+                <div class="dot"></div>
+                Assistente Apoio TEA — Online
+            </div>
+            <div id="chat-mensagens">
+                <div class="msg bot">Olá! 👋 Sou o assistente do Apoio TEA. Estou aqui para ajudar com dúvidas sobre
+                    autismo, rotinas, direitos, terapias e muito mais. Como posso te ajudar hoje?</div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chat-input" placeholder="Digite sua mensagem..."
+                    onkeydown="if(event.key==='Enter') enviarMensagem()" />
+                <button onclick="enviarMensagem()">Enviar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCAIS -->
+    <section id="locais" class="secao">
+        <h2 class="secao-titulo">📍 Locais de Apoio</h2>
+        <p class="secao-sub">Centros, clínicas e associações especializadas em TEA. Clique em "Ver contato" para mais
+            informações.</p>
+
+        <div class="filtro">
+            <button class="ativo-f" onclick="filtrarLocais('todos', this)">Todos</button>
+            <button onclick="filtrarLocais('sus', this)">SUS / Gratuito</button>
+            <button onclick="filtrarLocais('clinica', this)">Clínica</button>
+            <button onclick="filtrarLocais('associacao', this)">Associação</button>
+            <button onclick="filtrarLocais('caps', this)">CAPS</button>
+        </div>
+
+        <div id="lista-locais"></div>
+    </section>
+
+    <!-- APOSENTADORIA -->
+    <section id="aposentadoria" class="secao">
+        <h2 class="secao-titulo">📋 Aposentadoria por Invalidez — TEA</h2>
+        <p class="secao-sub">Guia completo para pessoas com autismo severo que não possuem condições de trabalhar. Siga
+            o passo a passo abaixo.</p>
+
+        <div class="alerta info">
+            <span>ℹ️</span>
+            <div>O benefício correto para a maioria dos casos de TEA é o <strong>BPC (Benefício de Prestação
+                    Continuada)</strong> — 1 salário mínimo mensal, sem precisar ter contribuído ao INSS.</div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-num">1</div>
+            <div class="etapa-conteudo">
+                <h3>Obtenha o laudo médico</h3>
+                <p>Procure um médico (psiquiatra, neurologista ou clínico) para emitir o laudo com o CID F84 (Transtorno
+                    do Espectro Autista). O laudo deve descrever a gravidade e os impactos na capacidade laboral.</p>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-num">2</div>
+            <div class="etapa-conteudo">
+                <h3>Reúna os documentos necessários</h3>
+                <ul>
+                    <li>RG e CPF do requerente</li>
+                    <li>Comprovante de residência atualizado</li>
+                    <li>Laudo médico com CID (F84.0 a F84.9)</li>
+                    <li>Cartão do NIS/NIT (Cadastro Único)</li>
+                    <li>Comprovante de renda familiar</li>
+                    <li>Certidão de nascimento ou casamento</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-num">3</div>
+            <div class="etapa-conteudo">
+                <h3>Inscreva-se no CadÚnico (se ainda não tem)</h3>
+                <p>Vá ao CRAS (Centro de Referência de Assistência Social) da sua cidade para se cadastrar no Cadastro
+                    Único do Governo Federal. É obrigatório para o BPC.</p>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-num">4</div>
+            <div class="etapa-conteudo">
+                <h3>Dê entrada no INSS</h3>
+                <p>Você pode solicitar de três formas:</p>
+                <ul>
+                    <li><strong>Online:</strong> meu.inss.gov.br</li>
+                    <li><strong>Telefone:</strong> 135 (gratuito)</li>
+                    <li><strong>Presencial:</strong> Agência do INSS mais próxima (agende pelo 135)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-num">5</div>
+            <div class="etapa-conteudo">
+                <h3>Perícia médica e social</h3>
+                <p>O INSS agendará uma perícia médica e possivelmente uma avaliação social. Leve todos os laudos,
+                    receitas e documentos que comprovem o grau de comprometimento.</p>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-num">6</div>
+            <div class="etapa-conteudo">
+                <h3>Aguarde a análise</h3>
+                <p>O prazo médio é de 30 a 45 dias. Você pode acompanhar pelo app "Meu INSS" ou pelo site
+                    meu.inss.gov.br. Em caso de negativa, é possível recorrer.</p>
+            </div>
+        </div>
+
+        <div class="alerta sucesso">
+            <span>✅</span>
+            <div><strong>Dica importante:</strong> Se o INSS negar, procure a Defensoria Pública ou um advogado
+                previdenciarista. Muitos casos de TEA são inicialmente negados e revertidos em recurso.</div>
+        </div>
+
+        <div class="alerta aviso">
+            <span>⚠️</span>
+            <div><strong>Critério de renda:</strong> Para o BPC, a renda per capita familiar deve ser menor que 1/4 do
+                salário mínimo. Existem exceções — consulte um assistente social para seu caso.</div>
+        </div>
+    </section>
+
+    <!-- DIREITOS -->
+    <section id="direitos" class="secao">
+        <h2 class="secao-titulo">⚖️ Direitos da Pessoa com Autismo</h2>
+        <p class="secao-sub">Leis federais garantem direitos fundamentais para pessoas com TEA no Brasil.</p>
+
+        <div class="card" style="border-left: 4px solid var(--azul)">
+            <h3>📜 Lei 12.764/2012 — Lei Berenice Piana</h3>
+            <p>Institui a Política Nacional de Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista.
+                Garante vida digna, proteção e inclusão social. O autismo é reconhecido como deficiência para todos os
+                efeitos legais.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--verde)">
+            <h3>♿ Lei 13.146/2015 — Estatuto da Pessoa com Deficiência</h3>
+            <p>Assegura e promove igualdade e exercício dos direitos e liberdades fundamentais das pessoas com
+                deficiência. Inclui direito à saúde, educação, moradia, trabalho, lazer e acessibilidade.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--laranja)">
+            <h3>🏫 Educação Inclusiva</h3>
+            <p>Toda criança com autismo tem direito à matrícula em escola regular com atendimento educacional
+                especializado (AEE). A escola não pode recusar matrícula. O acompanhante especializado pode ser exigido
+                quando necessário.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--roxo)">
+            <h3>🏥 Atendimento pelo SUS</h3>
+            <p>O SUS deve oferecer diagnóstico e tratamento, incluindo terapias como ABA, fonoaudiologia, terapia
+                ocupacional e psicoterapia. Os CAPS Infanto-Juvenis (CAPSi) atendem crianças e adolescentes com TEA
+                gratuitamente.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #e53935">
+            <h3>🪪 Carteirinha do Autista</h3>
+            <p>A Lei 13.977/2020 (Lei Romeo Mion) criou a Carteira de Identificação da Pessoa com Transtorno do Espectro
+                Autista (CIPTEA). Garante atendimento prioritário em serviços públicos e privados. Pode ser emitida no
+                município ou pelo gov.br.</p>
+        </div>
+
+        <div class="alerta info">
+            <span>📞</span>
+            <div><strong>Denúncias de violação de direitos:</strong> Disque 100 (Direitos Humanos) — gratuito, 24h. Ou
+                acesse ouvidoria do MEC, SUS e CRAS da sua cidade.</div>
+        </div>
+    </section>
+
+    <!-- MODAL DE CONTATO -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <h2 id="modal-titulo">Contato</h2>
+            <p id="modal-desc"></p>
+            <div id="modal-linhas"></div>
+            <button class="btn-fechar" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="./script.js"></script>
+
+</html>
